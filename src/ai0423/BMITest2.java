@@ -43,5 +43,6 @@ public class BMITest2 {
         System.out.printf("이름: %s, BMI: %.2f, 판정: %s\n설명: %s", name, bmi, result1, result2);
 
     s.close();
+    s1.close();
     }
 }
