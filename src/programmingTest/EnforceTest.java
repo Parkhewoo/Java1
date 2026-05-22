@@ -107,7 +107,7 @@ public class EnforceTest {
                         break;
                     }
 
-                    int sellPrice = weaponLevel * 1000;
+                    int sellPrice = weaponLevel * 2000;
 
                     System.out.println("\n무기를 판매하시겠습니까?");
                     System.out.println("현재 무기 : +" + weaponLevel);
