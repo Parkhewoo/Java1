@@ -16,6 +16,6 @@ public class Song implements ISong {
     // [인터페이스 메서드 구현]
     @Override
     public void showInfo() {
-        System.out.println("[Song] " + title + " - " + artist);
+        System.out.println("[노래] " + title + " - " + artist);
     }
 }

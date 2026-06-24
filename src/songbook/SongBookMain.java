@@ -13,7 +13,7 @@ public class SongBookMain {
         System.out.println("======== DIGITAL PURPLE SONGBOOK ========");
 
         while (true) {
-            System.out.println("\n1.일반곡 | 2.퍼플곡 | 3.리스트 | 4.종료");
+            System.out.println("\n1.일반곡 | 2.추천곡 | 3.리스트 | 4.종료");
             System.out.print("선택> ");
             int menu = sc.nextInt();
             sc.nextLine();
