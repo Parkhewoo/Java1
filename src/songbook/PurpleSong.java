@@ -10,6 +10,6 @@ public class PurpleSong extends Song {
     // [오버라이딩] 부모의 showInfo를 퍼플 테마에 맞게 재정의
     @Override
     public void showInfo() {
-        System.out.println(" [추천 노래] " + getTitle() + " - " + getArtist());
+        System.out.println(" [추천곡] " + getTitle() + " - " + getArtist());
     }
 }
