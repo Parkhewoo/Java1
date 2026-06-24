@@ -1,9 +1,9 @@
 package songbook;
 
 // [상속] Song 클래스의 특징을 그대로 물려받음
-public class PurpleSong extends Song {
+public class PeopleSong extends Song {
 
-    public PurpleSong(String title, String artist) {
+    public PeopleSong(String title, String artist) {
         super(title, artist); // 부모 생성자 호출
     }
 

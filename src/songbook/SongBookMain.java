@@ -10,7 +10,7 @@ public class SongBookMain {
         Song[] list = new Song[5];
         int count = 0;
 
-        System.out.println("======== DIGITAL PURPLE SONGBOOK ========");
+        System.out.println("======== DIGITAL SONGBOOK ========");
 
         while (true) {
             System.out.println("\n1.일반곡등록 | 2.추천곡등록 | 3.리스트 | 4.종료");
@@ -26,7 +26,7 @@ public class SongBookMain {
                 System.out.print("가수: "); String a = sc.nextLine();
 
                 if (menu == 1) list[count++] = new Song(t, a);
-                else list[count++] = new PurpleSong(t, a);
+                else list[count++] = new PeopleSong(t, a);
                 System.out.println("등록되었습니다.");
             } else if (menu == 3) {
                 System.out.println("\n--- SONGBOOK LIST ---");
