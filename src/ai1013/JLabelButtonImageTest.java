@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class JLabelButtonImageTest extends JFrame {
         ImageIcon lblIcon = new ImageIcon("imgs/dog2.png");
         JButton lbl = new JButton();
-        boolean flag;
+        boolean flag = true;
 
     public JLabelButtonImageTest(){
         setTitle("ImageIcon설정 컴포넌트");
