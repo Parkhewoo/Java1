@@ -1,6 +1,6 @@
 package ai1027;
 
-import ai1013.center.CenterFrame2;
+import center.CenterFrame2;
 
 import javax.swing.*;
 import java.awt.*;
