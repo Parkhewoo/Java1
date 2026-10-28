@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 
 public class MouseEventTest extends JFrame {
     JLabel lbl = new JLabel();
+    String msg = "";
 
     public MouseEventTest(){
         JPanel panel = new JPanel();
@@ -29,6 +30,20 @@ public class MouseEventTest extends JFrame {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            int eBtnNum = e.getButton();
+            switch (eBtnNum){
+                case 1:
+                    msg = "왼쪽";
+                    break;
+                case 2:
+                    msg = "가운데";
+                    break;
+                case 3:
+                    msg = "오른쪽";
+                    break;
+            }
+
+            JOptionPane.showMessageDialog(null, msg + "버튼 눌러짐");
             System.out.println("버튼에 마우스가 눌러짐");
             lbl.setText("버튼에 마우스가 눌러짐");
         }
