@@ -14,8 +14,10 @@ public class MenuTest extends JFrame {
     JFrame frame;
 
     public MenuTest(){
-        add(textArea);
         frame = this;
+        JScrollPane scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        add(scrollPane);
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
