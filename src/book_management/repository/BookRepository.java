@@ -42,9 +42,9 @@ public class BookRepository {
             throw new RuntimeException(e);
         }finally {
             try {
-                pstmt.close();
-                rs.close();
-                con.close();
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -57,38 +57,8 @@ public class BookRepository {
         PreparedStatement pstmt = null;
 
         String sql = "insert into book values(?, ?, ?, ?, ?, ?, ?)";
-//        카테고리 id를 정수값으로 변경
-        int category_id = 0;
-        switch (book.getCategory_name()){
-            case "IT도서":
-                category_id = 10;
-                break;
-            case "소설":
-                category_id = 20;
-                break;
-            case "수필":
-                category_id = 30;
-                break;
-            case "시":
-                category_id = 40;
-                break;
-        }
-//        출판사명을 id 정수값으로 변경
-        int publish_id = 0;
-        switch (book.getPublish_name()){
-            case "한빛아카데미":
-                publish_id = 1;
-                break;
-            case "생능출판사":
-                publish_id = 2;
-                break;
-            case "민음사":
-                publish_id = 3;
-                break;
-            case "해냄출판사":
-                publish_id = 4;
-                break;
-        }
+        int category_id = toCategoryId(book.getCategory_name());
+        int publish_id = toPublishId(book.getPublish_name());
 
         try{
             pstmt = con.prepareStatement(sql);
@@ -105,11 +75,97 @@ public class BookRepository {
             throw new RuntimeException(e);
         }finally {
             try {
-                pstmt.close();
-                con.close();
+                if (pstmt != null) pstmt.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public void update(Book book){
+        Connection con = JDBCConnector.getConnection();
+        String sql = "Update book set name=?, author=?, price=?, inventory=?, category_id=?, publish_id=? where isbn=?";
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, book.getName());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setInt(3, book.getPrice());
+            pstmt.setInt(4, book.getInventory());
+
+            int category_id = toCategoryId(book.getCategory_name());
+            int publish_id = toPublishId(book.getPublish_name());
+            pstmt.setInt(5, category_id);
+            pstmt.setInt(6, publish_id);
+            pstmt.setString(7, book.getIsbn());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void delete(String isbn){
+        Connection con = JDBCConnector.getConnection();
+        String sql = "delete from book where isbn = ?";
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, isbn);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int toCategoryId(String categoryName){
+        //        카테고리 id를 정수값으로 변경
+        int category_id = 0;
+        switch (categoryName){
+            case "IT도서":
+                category_id = 10;
+                break;
+            case "소설":
+                category_id = 20;
+                break;
+            case "수필":
+                category_id = 30;
+                break;
+            case "시":
+                category_id = 40;
+                break;
+        }
+        return category_id;
+    }
+
+    public int toPublishId(String publishName){
+        //        출판사명을 id 정수값으로 변경
+        int publish_id = 0;
+        switch (publishName){
+            case "한빛아카데미":
+                publish_id = 1;
+                break;
+            case "생능출판사":
+                publish_id = 2;
+                break;
+            case "민음사":
+                publish_id = 3;
+                break;
+            case "해냄출판사":
+                publish_id = 4;
+                break;
+        }
+        return publish_id;
     }
 }

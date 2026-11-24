@@ -30,10 +30,10 @@ public class BookInsertPan extends JPanel {
         comboCategory = new JComboBox<String>(categoryNames);
         comboPublish = new JComboBox<String>(publishNames);
 
-        for (int i = 0; i < tableHeader.length; i++) {
-            lbls[i] = new JLabel(tableHeader[i], JLabel.RIGHT);
+        for (int i = 0; i < header.length; i++) {
+            lbls[i] = new JLabel(header[i], JLabel.RIGHT);
             panS.add(lbls[i]);
-            if(i < tableHeader.length -2){
+            if(i < header.length -2){
                 tfs[i] = new JTextField();
                 panS.add(tfs[i]);
             } else if (i == 5) {
